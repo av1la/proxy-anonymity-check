@@ -39,8 +39,8 @@ def check_proxy_layer(html: str, proxy_addr: str, real_addr: str) -> int:
 
 def check_target_access(html):
     check_list = [
-        '<TITLE>Access Denied<\/TITLE>',
-        '<title>403 Forbidden<\/title>'
+        'Access Denied',
+        '403 Forbidden'
     ]
 
     regex = re.compile('|'.join(check_list))
