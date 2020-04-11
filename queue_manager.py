@@ -28,7 +28,6 @@ class Worker(threading.Thread):
 
 
     def run(self):
-
         self.started_at = time.time()
         self.fn(*self.args)
 
@@ -43,7 +42,6 @@ class Queue:
 
 
     def garbage_collector(self):
-        started_at = time.time()
         while len(self.threads):
             for thread in self.threads:
                 if not thread.is_alive():
@@ -54,7 +52,7 @@ class Queue:
                     thread.kill()
         print('processado {count} proxies em {time}s'.format(
             count=len(self.routines), 
-            time=time.time()-started_at))
+            time=time.time()-self.started_at))
 
 
     def collector(self):
@@ -68,6 +66,7 @@ class Queue:
 
 
     def start(self):
+        self.started_at = time.time()
 
         for routine in self.routines:
 
